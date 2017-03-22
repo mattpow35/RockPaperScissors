@@ -4,9 +4,9 @@ public class Paper extends GameChoice
 {
 	int winFactor;
 	
-	public Paper()
+	public Paper(int winFactor)
 	{
-		super(2);
+		super(winFactor);
 	}
 	
 	public int getWinFactor() {

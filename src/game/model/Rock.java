@@ -4,9 +4,9 @@ public class Rock extends GameChoice
 {
 	int winFactor;
 	
-	public Rock()
+	public Rock(int winFactor)
 	{
-		super(1);
+		super(winFactor);
 	}
 
 	

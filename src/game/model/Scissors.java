@@ -4,9 +4,9 @@ public class Scissors extends GameChoice
 {
 	int winFactor;
 	
-	public Scissors()
+	public Scissors(int winFactor)
 	{
-		super(3);
+		super(winFactor);
 	}
 	
 	public int getWinFactor() {
