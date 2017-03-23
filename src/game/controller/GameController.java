@@ -39,17 +39,51 @@ public class GameController
 	
 	public void playGame()
 	{
-		chooseUserSelection();
-		chooseComSelection();
-		getWinner();
-	
+		boolean keepPlaying = true;
+		while(keepPlaying)
+		{
+			chooseUserSelection();
 		
 		
+			if(continueGame())
+			{
+				chooseComSelection();
+				if (getWinner().equals("user"))
+				{
+					System.out.println("You win!");
+					wins +=1;
+				}
+				else if(getWinner().equals("com"))
+				{
+					System.out.println("You lose!");
+					losses +=1;
+				}
+				else if(getWinner().equals("tie"))
+				{
+					System.out.println("You tied!");
+					ties += 1;
+				}
+				System.out.println("Your record is: \n Wins: " + wins + "\n Losses: " + losses + "\n Ties: " + ties);
+			}
+			else
+			{
+				System.out.println("You must type in a valid selection.");
+			}
+			
+			
+			System.out.println("Do you want to try again? (type no to stop)");
+			String response = input.nextLine();
+			if (response.equalsIgnoreCase("no"))
+			{
+				keepPlaying = false;
+				System.out.println("Thanks for playing!");
+			}
+		}
 	}
 	
 	public void chooseUserSelection()
 	{
-		System.out.print("Your choice: ");
+		System.out.print("What is your selection? ");
 		
 		String currentChoice = input.nextLine();
 	
@@ -74,9 +108,24 @@ public class GameController
 		else
 		{
 			System.out.println("Type in a valid choice");
+			user = new Rock(0);
+			user.setWinFactor(0);
+
 		}
 		System.out.println("Press enter for the computers selection");
 		input.nextLine();
+	}
+	
+	public boolean continueGame()
+	{
+		boolean playGame  = false;
+		
+		if(user.getWinFactor() != 0)
+		{
+			playGame = true;
+		}
+		
+		return playGame;
 	}
 	
 	public void chooseComSelection()
@@ -104,48 +153,40 @@ public class GameController
 		}
 	}
 	
-	private void getWinner()
+	private String getWinner()
 	{
+		String winner = "";
+		
 		if(user.getWinFactor() == com.getWinFactor())
 		{
-			System.out.println("You tied!");
-			ties += 1;
+			winner = "tie";
+		}
+		else if(user.getWinFactor() == 1 && com.getWinFactor() == 2)
+		{
+			winner = "com";
+		}
+		else if(user.getWinFactor() == 2 && com.getWinFactor() == 3)
+		{
+			winner = "com";
+		}
+		else if(user.getWinFactor() == 3 && com.getWinFactor() == 1)
+		{
+			winner = "com";
+		}
+		else if(user.getWinFactor() == 1 && com.getWinFactor() == 3)
+		{
+			winner = "user";
+		}
+		else if(user.getWinFactor() == 2 && com.getWinFactor() == 1)
+		{
+			winner = "user";
+		}
+		else if(user.getWinFactor() == 3 && com.getWinFactor() == 2)
+		{
+			winner = "user";
 		}
 		
-		if(user.getWinFactor() == 1 && com.getWinFactor() == 2);
-		{
-			System.out.println("You lose!");
-			losses -= 1;
-		}
-		if(user.getWinFactor() == 2 && com.getWinFactor() == 3)
-		{
-			System.out.println("You lose!");
-			losses -= 1;
-		}
-		if(user.getWinFactor() == 3 && com.getWinFactor() == 1)
-		{
-			System.out.println("You lose!");
-			losses -= 1;
-		}
-		
-		
-		
-		
-		if(user.getWinFactor() == 1 && com.getWinFactor() == 3)
-		{
-			System.out.println("You win!");
-			wins += 1;
-		}
-		if(user.getWinFactor() == 2 && com.getWinFactor() == 1)
-		{
-			System.out.println("You win!");
-			wins += 1;
-		}
-		if(user.getWinFactor() == 3 && com.getWinFactor() == 2)
-		{
-			System.out.println("You win!");
-			wins += 1;
-		}
+		return winner;
 		
 	}
 
