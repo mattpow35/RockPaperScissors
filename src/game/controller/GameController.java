@@ -90,7 +90,7 @@ public class GameController
 		if(currentChoice.equalsIgnoreCase("p"))
 		{
 			user = new Paper(2);
-			System.out.println("You chose Paper");
+			System.out.println("You chose Paper!");
 			user.setWinFactor(2);
 		}
 		else if(currentChoice.equalsIgnoreCase("r"))
