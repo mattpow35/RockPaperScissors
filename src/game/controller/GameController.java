@@ -116,18 +116,6 @@ public class GameController
 		input.nextLine();
 	}
 	
-	public boolean continueGame()
-	{
-		boolean playGame  = false;
-		
-		if(user.getWinFactor() != 0)
-		{
-			playGame = true;
-		}
-		
-		return playGame;
-	}
-	
 	public void chooseComSelection()
 	{
 		int random = (int) (Math.random()*3);
@@ -188,6 +176,18 @@ public class GameController
 		
 		return winner;
 		
+	}
+	
+	public boolean continueGame()
+	{
+		boolean playGame  = false;
+		
+		if(user.getWinFactor() != 0)
+		{
+			playGame = true;
+		}
+		
+		return playGame;
 	}
 
 }
